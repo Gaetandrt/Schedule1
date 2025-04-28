@@ -1,4 +1,4 @@
-package com.example.scheduleapp.presentation.add_edit_routine
+package com.example.schedule1.presentation.add_edit_routine
 
 import android.os.Bundle
 import android.view.LayoutInflater

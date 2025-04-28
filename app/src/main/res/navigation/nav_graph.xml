@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.scheduleapp.presentation.home.HomeFragment"
+        android:name="com.example.schedule1.presentation.home.HomeFragment"
         android:label="Routines"
         tools:layout="@layout/fragment_home">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/addEditRoutineFragment"
-        android:name="com.example.scheduleapp.presentation.add_edit_routine.AddEditRoutineFragment"
+        android:name="com.example.schedule1.presentation.add_edit_routine.AddEditRoutineFragment"
         android:label="Add/Edit Routine"
         tools:layout="@layout/fragment_add_edit_routine">
         <!-- Arguments can be added here later for editing -->

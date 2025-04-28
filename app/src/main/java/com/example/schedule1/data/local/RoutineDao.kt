@@ -1,7 +1,7 @@
-package com.example.scheduleapp.data.local
+package com.example.schedule1.data.local
 
 import androidx.room.*
-import com.example.scheduleapp.domain.model.Routine
+import com.example.schedule1.domain.model.Routine
 import kotlinx.coroutines.flow.Flow
 
 /**

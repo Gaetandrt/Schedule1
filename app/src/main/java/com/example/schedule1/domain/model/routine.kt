@@ -1,4 +1,4 @@
-package com.example.scheduleapp.domain.model
+package com.example.schedule1.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,8 +1,8 @@
-package com.example.scheduleapp.data.repository
+package com.example.schedule1.data.repository
 
-import com.example.scheduleapp.data.local.RoutineDao
-import com.example.scheduleapp.domain.model.Routine
-import com.example.scheduleapp.domain.repository.RoutineRepository
+import com.example.schedule1.data.local.RoutineDao
+import com.example.schedule1.domain.model.Routine
+import com.example.schedule1.domain.repository.RoutineRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject // Assuming Hilt or another DI framework
 import javax.inject.Singleton

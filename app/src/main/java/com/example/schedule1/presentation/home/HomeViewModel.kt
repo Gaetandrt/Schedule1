@@ -1,9 +1,9 @@
-package com.example.scheduleapp.presentation.home
+package com.example.schedule1.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.scheduleapp.domain.model.Routine
-import com.example.scheduleapp.domain.repository.RoutineRepository
+import com.example.schedule1.domain.model.Routine
+import com.example.schedule1.domain.repository.RoutineRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

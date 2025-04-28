@@ -1,9 +1,9 @@
-package com.example.scheduleapp.presentation.add_edit_routine
+package com.example.schedule1.presentation.add_edit_routine
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.scheduleapp.domain.model.Routine
-import com.example.scheduleapp.domain.repository.RoutineRepository
+import com.example.schedule1.domain.model.Routine
+import com.example.schedule1.domain.repository.RoutineRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

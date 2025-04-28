@@ -1,6 +1,6 @@
-package com.example.scheduleapp.domain.repository
+package com.example.schedule1.domain.repository
 
-import com.example.scheduleapp.domain.model.Routine
+import com.example.schedule1.domain.model.Routine
 import kotlinx.coroutines.flow.Flow
 
 /**

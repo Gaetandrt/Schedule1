@@ -1,4 +1,4 @@
-package com.example.scheduleapp.presentation.home
+package com.example.schedule1.presentation.home
 
 import android.view.LayoutInflater
 import android.view.View

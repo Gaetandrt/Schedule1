@@ -1,9 +1,9 @@
-package com.example.scheduleapp
+package com.example.schedule1
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class ScheduleApplication : Application() {
+class schedule1lication : Application() {
     // Application setup can go here if needed later
 }

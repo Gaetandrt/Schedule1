@@ -1,11 +1,11 @@
-package com.example.scheduleapp.di
+package com.example.schedule1.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.scheduleapp.data.local.AppDatabase
-import com.example.scheduleapp.data.local.RoutineDao
-import com.example.scheduleapp.data.repository.RoutineRepositoryImpl
-import com.example.scheduleapp.domain.repository.RoutineRepository
+import com.example.schedule1.data.local.AppDatabase
+import com.example.schedule1.data.local.RoutineDao
+import com.example.schedule1.data.repository.RoutineRepositoryImpl
+import com.example.schedule1.domain.repository.RoutineRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

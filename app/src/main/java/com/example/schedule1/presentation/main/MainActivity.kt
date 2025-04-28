@@ -1,4 +1,4 @@
-package com.example.scheduleapp.presentation.main
+package com.example.schedule1.presentation.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
