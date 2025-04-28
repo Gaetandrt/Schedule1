@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.schedule1.domain.model.Routine
 import com.example.schedule1.domain.repository.RoutineRepository
+import com.example.schedule1.domain.alarm.RoutineAlarmScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 data class HomeUiState(
     val routines: List<Routine> = emptyList(),
@@ -18,7 +20,8 @@ data class HomeUiState(
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    routineRepository: RoutineRepository
+    private val routineRepository: RoutineRepository,
+    private val alarmScheduler: RoutineAlarmScheduler
 ) : ViewModel() {
 
     // Observe routines from the repository and map to UI state
@@ -31,4 +34,15 @@ class HomeViewModel @Inject constructor(
         )
 
     // Events/Actions can be added here if needed (e.g., delete routine)
+
+    fun deleteRoutine(routine: Routine): Unit {
+        viewModelScope.launch {
+            try {
+                routineRepository.deleteRoutine(routine)
+                alarmScheduler.cancel(routine.id)
+            } catch (e: Exception) {
+                // Log error or communicate failure
+            }
+        }
+    }
 }

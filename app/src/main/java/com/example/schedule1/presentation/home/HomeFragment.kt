@@ -12,9 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.schedule1.R
+import androidx.recyclerview.widget.RecyclerView
 import com.example.schedule1.databinding.FragmentHomeBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -40,17 +42,52 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+        setupSwipeToDelete()
         setupObservers()
         setupClickListeners()
     }
 
     private fun setupRecyclerView(): Unit {
-        routineListAdapter = RoutineListAdapter()
+        routineListAdapter = RoutineListAdapter { routine ->
+            val action = HomeFragmentDirections.actionHomeFragmentToAddEditRoutineFragment(
+                routineId = routine.id,
+                title = "Edit Routine"
+            )
+            findNavController().navigate(action)
+        }
         binding.recyclerViewRoutines.apply {
             adapter = routineListAdapter
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
+    }
+
+    private fun setupSwipeToDelete(): Unit {
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int): Unit {
+                val position = viewHolder.adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val routineToDelete = routineListAdapter.currentList[position]
+                    viewModel.deleteRoutine(routineToDelete)
+
+                    Snackbar.make(binding.root, "Routine deleted", Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(binding.recyclerViewRoutines)
     }
 
     private fun setupObservers(): Unit {
@@ -59,7 +96,6 @@ class HomeFragment : Fragment() {
                 viewModel.uiState.collect { state ->
                     binding.progressBar.isVisible = state.isLoading
                     routineListAdapter.submitList(state.routines)
-                    // TODO: Handle empty list state if desired
                 }
             }
         }
@@ -67,7 +103,8 @@ class HomeFragment : Fragment() {
 
     private fun setupClickListeners(): Unit {
         binding.fabAddRoutine.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_addEditRoutineFragment)
+            val action = HomeFragmentDirections.actionHomeFragmentToAddEditRoutineFragment()
+            findNavController().navigate(action)
         }
     }
 

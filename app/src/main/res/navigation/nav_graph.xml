@@ -18,9 +18,19 @@
     <fragment
         android:id="@+id/addEditRoutineFragment"
         android:name="com.example.schedule1.presentation.add_edit_routine.AddEditRoutineFragment"
-        android:label="Add/Edit Routine"
+        android:label="{title}"
         tools:layout="@layout/fragment_add_edit_routine">
-        <!-- Arguments can be added here later for editing -->
+
+        <argument
+            android:name="routineId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="Add Routine" />
+
     </fragment>
 
 </navigation>

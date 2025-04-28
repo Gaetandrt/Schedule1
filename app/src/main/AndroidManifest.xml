@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Notification Permission (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Exact Alarm Permission (Android 12+) -->
+    <!-- Note: Needs explicit user opt-in on Android 14+ via Settings -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!-- Reschedule Alarms on Reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Optional: Vibration for Notifications -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".schedule1lication"
         android:allowBackup="true"
@@ -22,6 +32,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Receiver for scheduled alarms -->
+        <receiver android:name=".alarms.RoutineAlarmReceiver" android:exported="false" />
+
+        <!-- Receiver for rescheduling on boot -->
+        <receiver android:name=".alarms.BootCompletedReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

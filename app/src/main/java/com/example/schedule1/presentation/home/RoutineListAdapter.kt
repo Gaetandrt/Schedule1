@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.schedule1.databinding.ItemRoutineBinding
 import com.example.schedule1.domain.model.Routine
 
-class RoutineListAdapter :
+class RoutineListAdapter(
+    private val onItemClicked: (Routine) -> Unit
+) :
     ListAdapter<Routine, RoutineListAdapter.RoutineViewHolder>(RoutineDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutineViewHolder {
@@ -19,13 +21,13 @@ class RoutineListAdapter :
 
     override fun onBindViewHolder(holder: RoutineViewHolder, position: Int) {
         val routine: Routine = getItem(position)
-        holder.bind(routine)
+        holder.bind(routine, onItemClicked)
     }
 
     inner class RoutineViewHolder(private val binding: ItemRoutineBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(routine: Routine): Unit {
+        fun bind(routine: Routine, onItemClicked: (Routine) -> Unit): Unit {
             binding.textViewRoutineName.text = routine.name
             binding.textViewRoutineTime.text = routine.scheduleTime
             if (routine.description.isNullOrBlank()) {
@@ -34,7 +36,11 @@ class RoutineListAdapter :
                 binding.textViewRoutineDescription.text = routine.description
                 binding.textViewRoutineDescription.visibility = View.VISIBLE
             }
-            // TODO: Add click listener if needed for edit/delete
+
+            // Set click listener on the item view
+            itemView.setOnClickListener {
+                onItemClicked(routine)
+            }
         }
     }
 }

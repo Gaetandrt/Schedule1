@@ -39,7 +39,7 @@ interface RoutineDao {
      * @param routine The routine to insert.
      * @return The row ID of the newly inserted routine.
      */
-    @Insert(onConflict = OnConflictStrategy.IGNORE) // Or ABORT, REPLACE, etc.
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertRoutine(routine: Routine): Long
 
     /**
