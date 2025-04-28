@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.schedule1.databinding.ItemRoutineBinding
-import com.example.scheduleapp.domain.model.Routine
+import com.example.schedule1.domain.model.Routine
 
 class RoutineListAdapter :
     ListAdapter<Routine, RoutineListAdapter.RoutineViewHolder>(RoutineDiffCallback()) {
